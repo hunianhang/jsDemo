@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Elements</title>
+    <style>
+        ul{
+            list-style: none;
+
+        }
+        li{
+            border: solid 1px #ddd;
+            height: 20px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        let hd =[
+            {title:"Js basci knowlege", lesson:3},
+            {title:"DOM operation", lesson:4},
+            {title:"JQuery tutorial", lesson: 10}
+        ];        
+
+        console.log(hd[0].title );
+
+        let className = ['JS','C#','JAVA'];
+        // for in: get the key  
+        for(let key in className){
+            console.log(key);  //0,1,2key is the key name
+        }
+
+
+        document.write(
+            `<table border="1" width="100%"">
+                <thead><tr><th>title></th><th>lesson</th></thead>
+                `
+        )
+
+        for(let i in hd){
+            document.write(`
+                <tr><td>${hd[i].title}</td><td>${hd[i].lesson}</td></tr>
+            `)
+        }
+
+        document.write(`</table>`);
+
+
+        for(let key in window){// key is the key name
+            console.log(window[key]);
+        }
+        for(const val of className){   //list the value
+            console.log(val);
+        }
+
+
+        //list all the li elements
+        let lis = document.querySelectorAll('li');
+        for(const li of lis){
+            li.addEventListener('click',function(){
+                li.style.backgroundColor = 'red';
+            })
+        }
+
+    </script>
+</body>
+</html>
