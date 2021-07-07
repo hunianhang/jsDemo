@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Type</title>
+</head>
+<body>
+    <script>
+        let a = 3;
+        let b = '3';
+        let arr = [];
+        let obj = {};
+        let data;
+        
+        function fun() {
+
+        }
+        console.log(typeof a);
+        console.log(typeof b);
+        console.log(typeof arr);
+        console.log(typeof obj);
+        console.log(typeof data);
+
+        // if(typeof data == "undefined"){//用于判断变量是否定义
+        //     throw new Error("data not defined");
+        // }
+
+        console.log(arr instanceof Array);  //用于区分是否是array或者是obj
+        console.log(obj instanceof Object);
+
+        function User() //构造函数
+        {
+
+        }
+        let user = new User();
+
+        console.log(user instanceof User);
+        console.log(user instanceof Array);
+        console.log(user instanceof Object);
+
+
+    </script>
+</body>
+</html>

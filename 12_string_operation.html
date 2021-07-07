@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text", name="password">
+    <script>
+
+        //slice, substr, substring, trim, toUpperCase,toLowerCase includes, lastIndexOf,indexOf,replace,repeat.
+        // let name = "abcd001abc";
+        // console.log(name.length);
+
+        // console.log(name.toUpperCase());
+        // console.log(name.toLowerCase());
+
+        // let site = "    hdcms  ";
+        // console.log(site.trim());
+
+        // let ps = document.querySelector("[name='password']");
+        // ps.addEventListener('keyup',function(){
+        //     this.value  = this.value.trim();
+        //     console.log(this.value.length );
+        // })
+
+    //slice, substr, substring;
+    // let name = "Hello World!";
+
+    // console.log("=========================>")
+    // console.log("slice" + name.slice(1));
+    // console.log("substr" + name.substr(1));
+    // console.log("substring" + name.substring(1));
+
+    // console.log("=========================>")
+    // console.log("slice" + name.slice(1,3));
+    // console.log("substr" + name.substr(1,3));
+    // console.log("substring" + name.substring(1,3));
+
+    // console.log("=========================>")
+
+    // console.log("slice" + name.slice(-3));
+    // console.log("substr" + name.substr(-3));
+    // console.log("substring" + name.substring(-3));
+
+
+    // console.log("=========================>")
+
+    // console.log("slice" + name.slice(-3,-1));
+    // console.log("substr" + name.substr(-3,2));
+    // console.log("substring" + name.substring(-3));
+
+    // console.log(name.indexOf("d"));
+    // console.log(name.includes("d"));
+    // console.log(name.includes("d",3));
+    // console.log(name.lastIndexOf("d",3));
+    // console.log(name.toLowerCase().startsWith('H'));
+    // console.log(name.toLowerCase().endsWith('H'));
+
+
+    function phone(mobil,len = 3){
+        return String(mobil).slice(0,len * -1) + "*".repeat(len);
+    }
+
+    console.log(phone(4026175846,4));
+
+    </script>
+</body>
+</html>

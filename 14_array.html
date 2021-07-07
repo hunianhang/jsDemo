@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>hello</div>
+    <div>world</div>
+
+    <input type="text" name="title"/>
+    <span></span>
+    <script>
+        let  arr = [1,2,3,4,5];
+        let arr_str = '';
+        console.table(arr); 
+
+
+        console.log(Array.isArray([]))  // true
+
+        //array to string
+        let arr_001 = [1,2,3,4];
+        arr_str= arr_001.toString();
+        arr_str = String(arr_001);
+
+        arr_str = arr_001.join("|");
+
+
+        //string to arr
+
+        let str_001 = "hdcms";
+        let arr_002 = console.log(Array.from(str_001));
+
+
+        let divs = document.querySelectorAll("div");
+        console.log(Array.from(divs,function(item){
+            item.style.backgroundColor = "red";
+            console.log(item.innerHTML);
+        }))
+
+        console.log(..."hello");
+        const [...arr_dat] = "hello";
+
+
+        //array join  展开语法的使用
+        let arr_003 = [1,2,3];
+        let arr_004 = [4,5,6];
+
+        arr_003 = [...arr_003,...arr_004];
+        console.log(arr_003);
+
+        for(const value  of arr_003){
+            arr_004.push(value);
+        }
+        console.log("arr_004 " + arr_004);
+
+
+        function sum(...args){
+            return args.reduce((s,v)=>{
+                return (s+= v)
+            },0);
+        }
+
+        console.log(sum(12,3,4));
+
+
+
+        const divs_01 = document.querySelectorAll("div");
+
+        console.log(divs_01);
+        Array.from(divs_01).map(function(item){ //DOM元素不能直接操作数组方法，需要把DOM元素转换为数组。
+            console.log(item);
+        });
+
+        Array.prototype.map.call(divs_01,function(item){
+            console.log(item);
+        });
+        console.log([...divs_01]);
+
+        [...divs_01].map(function(item){
+            item.addEventListener("click",function(){
+                this.classList.toggle("hide");
+            });
+        });
+
+
+        //数组结构语法
+        let arr_005 = [1,23,4];
+
+        let [date001,date002] = arr_005;
+        console.log(date002);
+        let [name, year1] = ['Tom',2001];
+        let [, year] = ['Tom',2001];
+
+        //push(返回的结果是数组的个数), pop(返回的是弹出的值)，unshift(),shift();fill()填充函数 （头尾的添加）
+
+        //slice(start,end):返回新的数组，splice(start, cnt): 操作的是原数组。
+        // splice函数实现中间数组元素的删除，替换，增加的功能。
+        //splice(1,1,"name") 替换
+        //splice(1,1)  删除
+        //splice(1,0,"name") //增加
+
+
+        function move(array, from, to){
+            if(from < 0 || to >= array.length){
+                console.error("参数错误");
+            }
+            const newArray = [...array];
+            let item = newArray.splice(from,1);
+            newArray.splice(to,1,...item);
+            return newArray;
+        }
+
+
+
+        //clear array;
+        let arr_006= [1,2,3,4,5];
+        arr_006 = [];
+        arr_006.length = 0;  //this is best
+        arr_006.splice(0, arr_006.length);
+
+
+        //array 拆分和合并
+        //split,join
+
+        arr = arr.concat(arr_001,arr_002);
+        // arr = [...arr,...arr_001,...arr_002];
+
+        //数组内元素的移动
+        //console.log(arr_001.copyWithin(目的位置，开始位置，结束位置))，但不包括结束位置。
+
+        //元素的查找：
+        //indexOf, lastIndexOf,includes(其返回值是boolean)
+
+        //find 方法返回的是查找到的元素，特别适合引用类型的查找。
+        let lessons = [{name:'js'},{name:'css'},{name:'html'}];
+        let status = lessons.find(function(item){
+            return item.name = 'css';
+        });
+
+
+        //forEach(参数是函数), for in, for of
+        //forEach 可以直接操作DOM元素。
+
+        //some, every 函数
+        arr_001.every(function(item,index,arr_001){
+            console.log(arr_001);
+        });
+
+
+        let keywords = ['php','js'];
+        let title = document.querySelector('[name="title"]');
+        let res = "";
+        title.addEventListener("keyup",function(){
+            res = keywords.some(keyword =>{
+                return this.value,indexOf(keyword) != -1;
+                // console.log(this.value,indexOf(keyword) != -1);
+            });
+        });
+
+        if(res === false){
+            document.querySelector("span").innerHTML = 
+            "必须包含" + keywords.join(",") + "关键字";
+        }else{
+            document.querySelector("span").innerHTML = " ";
+        }
+
+
+        //filter 过滤操作：
+        
+        let persons = [
+            {name :"TOM",age:18},
+            {name :"D", age: 18},
+            {name : "M",age:15},
+        ]
+
+        const age_18 = persons.filter(function(item,index,arr){
+            return item.age == 18;
+        });
+        console.log(age_18)
+
+        //map 函数使用：注意值传递和值引用的区别。
+
+        //reduce 函数
+        let arr = [1,2,3,4,5];
+        arr.reduce(function(pre,value,index,array){
+            console.log(pre,value);
+            return 99;
+        },0);
+
+        let arr_007 = [1,2,3,1,1];
+        function arrayCnt(array,item){
+            array.reduce(function(total,cur){
+                total += item === cur?1:0;
+                return total;
+            },0);// 这里的0就是total的初始值，total的初始值也可以是一个空数组即[].
+        }
+
+
+        function arrayMax(array){
+           return  array.reduce(function(pre,cur) {
+                return pre> cur? pre: cur;
+            });
+        }
+
+
+        let arr_008 = [1,2,3,4,5,1,4,2];
+        let newArr = arr_008.reduce(function(arr,cur) {
+            if(arr.includes(cur) === false){
+                arr.push(arr);
+            }
+            return arr;
+            
+        },[]);
+
+
+    </script>
+
+</body>
+</html>

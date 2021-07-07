@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数组转字符串
+        let arr = ["Hello","World"];
+        console.log(arr.join(" "));
+        //字符串转数组
+        let str1 = "hello, world";
+        console.log(str1.split("") );
+
+        //num => str
+
+        //str => num
+
+
+        let str = '0';
+        // console.log(Boolean(str));
+        if(str){
+            console.log(Boolean(str));
+        }
+
+
+        //number
+        //isInteger, toFixed()//少数位的位数， (isNaN,is用于判断NaN类型）
+        console.log(Number.isNaN(2 / "houseren"));// NaN
+        console.log(Object.is(2 / "houseren", NaN));// NaN
+
+
+        //Math function：min + Math.floor(Math.random()*(Max - min ))  => [min, max); if + 1=> [min, max]
+        console.log(2+ Math.floor(Math.random() * (5-2+1))); //[2,5];
+
+
+
+        //date -> datastamp
+        const date = new Date("1996-7-12 08:11:12");
+        console.log(date * 1);
+        console.log(Number(date));
+        console.log(date.valueOf());
+        console.log(date.getTime());
+
+        const timestamp = date.valueOf();
+        console.log(new Date(timestamp))   
+        
+        
+        //date function
+        console.log(date.getFullYear);
+
+
+        //momentjs 时间库
+    </script>
+</body>
+</html>
