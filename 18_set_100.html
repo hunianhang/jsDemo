@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" name="hd">
+    <ul>
+
+    </ul>
+    <script>
+        let set = new Set();// set 是严格类型约束的
+        set.add(1);
+        set.add(1);
+        set.add('1');
+
+        let set_001 = new Set([1,2,3,4]);
+
+        let obj = {
+            1: "a",
+            '1': "b"
+        }
+        console.log(set.size);
+        set.delete();
+        set.values();
+        set.clear();
+
+
+        //set to array
+        let set_002 = new Set(['hello','world']);
+        console.log(Array.from(set_002));
+        console.log([...set_002]);
+        
+        let set_003 = new Set("12345678");
+        let arr = [...set_003].filter(function (item) {
+            return item < 5;
+        });
+
+        set_003 = new Set(arr);
+        console.log(set_003);
+
+        //array to set
+        let array = [1,2,3,4,5,1,3,5];
+        array= [...new Set(array)];
+        console.log(array);
+
+
+        //list element
+        [1,2,3].forEach(function (value,index,array) {
+            console.log(value,index,array );
+        });
+
+        let set_004 = new Set(['hello','world']);   //keys,values,entries;
+        set_004.forEach(function(value, key, set) {
+            console.log(value,key,set );
+            
+        })
+
+        for(const value of set_004){
+            console.log(value)
+        }
+
+
+        let obj_001 = {
+            data: new Set(),
+            set Keyword(word){
+                this.data.add(word);
+            },
+            print001(){
+                console.log(this);
+            },
+            show(){
+                let ul = document.querySelector("ul");
+                ul.innerHTML = '';
+                this.data.forEach(function (value) {
+                    ul.innerHTML += `<li>${value}</li>`;
+                });
+            }
+        };
+        let input = document.querySelector("[name='hd'");
+        input.addEventListener('blur',function () {
+            obj_001.Keyword = this.value;
+            obj_001.show();
+            obj_001.print001();
+            
+        })
+
+
+        //交集，并集
+
+        let m = new Set([1,2,3,4,5]);
+        let n = new Set([1,4,5,2,9,7]);
+
+        console.log(new Set([...m,...n]));
+
+        console.log([...m].filter(function (item) {
+            return n.has(item);     //这个是交集，若取反的话，则是差集
+        }))
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>google</button>
+    <script>
+        //箭头函数
+        let sum;
+        sum = [1,2,3,4].reduce(function (a,b) {
+            return a + b;
+        });
+
+        console.log(sum);
+
+        sum = [1,2,3,4].reduce( (a,b)=>{
+            return a + b;
+        });
+
+        console.log(sum);
+
+        sum = [1,2,3,4].reduce( (a,b)=>a + b);
+
+        console.log(sum);
+
+
+        let filter_data = [1,2,3,4].filter(function(value){
+            return value > 2;
+        });
+        console.log(filter_data);
+
+        filter_data = [1,2,3,4].filter(value=> value > 2
+        );
+        console.log(filter_data);
+
+        function sum001(...args) {
+            return args.length === 0 ? 0: args.pop()+ sum001([...args]);
+            
+        }
+
+
+        //this keyword
+        //当前对象的引用。
+
+        let  edu = {
+            site: "TOM",
+            show: function () {
+                return this.site; 
+            }
+        }
+
+        console.log(edu.show());
+
+        console.log(window);
+        console.log(this);
+        console.log(this === window);
+
+
+        function User(name) {
+            this.name = name;
+            this.show = function() {    //这个是对象的方法，所以这里的this指的就是这个定义的对象。
+                function render() { //这里是函数，不是方法。所以这里的this是全局的window
+                    console.log(this);
+                }
+                render();
+                return this.name;
+            };
+        }
+
+        //p126
+        console.log("==========>>>>p126");
+        let  lesson = {
+            site: "TOM",
+            lists: ['js','css','html'],
+            show: function () {
+               // return this.site; //这个时候的this是当前对象的this.
+               const self = this;  //这个是把当前的对象的this备份一下，以便后续使用。
+               return this.lists.map(function (value) {//map 后面的函数使用的this是全局的this，因为这个是函数，而不是方法。
+                    console.log(this);  //这里的this是全局的this，即window
+                   return `${self.site} - ${value}`; 
+               })
+            }
+        }
+
+        //最新方法：
+        // return this.lists.map(function (value) {
+        //     return `${this.site} - ${value}`;
+        //},this);  //这里的这个this是map的函数的一个参数。表明this指的就是当前对象。若this省略，或者传入null，undefined，那么这个回调函数的this就为全局对象即window。
+
+        // console.log(lesson.show());
+
+        //箭头函数里的this
+        //这里的this指的是父级作用域里面的this.
+         lesson = {
+            site: "TOM",
+            lists: ['js','css','html'],
+            show: function () {
+               // return this.site; //这个时候的this是当前对象的this.
+               const self = this;  
+               return this.lists.map(value =>{
+                    console.log(this);  
+                   return `${this.site} - ${value}`; 
+               })
+            }
+        }
+
+
+        let Dom = {
+            site:"后盾人",
+            bind:function(){
+                const button = document.querySelector('button');
+                console.log(button);
+                // button.addEventListener('click',()=>{
+                        // console.log(this.site);
+                // })
+                // button.onclick = function(){
+                //     console.log(this );
+                // }
+
+                button.addEventListener('click',function(event){
+                    console.log(event.target);//target 指向按钮。
+                })
+
+                button.addEventListener('click',(event) =>{
+                    console.log(this)
+                    console.log(event.target);//target 指向按钮。
+                })
+            }
+        }
+
+
+
+        //apply,call,bind. apply,call 是函数的方法，bind不能立即执行。
+        let lisis = {
+            name: "TOM",
+        }
+
+        function User(web,url){
+            console.log(web + url + this.name );
+        }
+
+        User.call(lisis,"google","www.google.com");  //User 用上lisis里的this
+        User.apply(lisis,["google","www.google.com"]);
+
+
+        //Object.keys()????
+
+
+    </script>
+    
+</body>
+</html>

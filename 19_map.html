@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div name='google'>google</div>
+    <div name='baidu'>baidu</div>
+    <script>
+        let map = new Map();
+
+        map = new Map([["name","TOM"],["age",19]]);
+        console.log(map);
+
+        map.set("sex","男");
+        map.set("site",'google');
+
+        console.log(map);
+
+
+        let obj = {
+            name: "TIM",
+        }
+
+        map.set(obj,"HelloWorld");
+        console.log(map.get(obj));
+
+        //set, get, delete, clear(),has(),
+
+        //遍历，以及类型转换，map-》 array-> set
+
+        console.log(map.keys());
+        console.log(map.values());
+        console.log(map.entries());
+
+        for (const [key,value] of map.entries()){
+            console.log(key)
+            console.log(value )
+        }
+
+        map.forEach((key,value) => {
+            console.log(key,value );
+        });
+
+        console.log("===============>>>>>>>>>>>>>>>");
+        // console.log([...map]);
+
+        // [...map].forEach((item) =>{     //把map整个转换成[[0,1],[0,1],[0,1]];这样的多维数组，下表0 表示key, 1表示value
+        //     console.log(item[1]);
+        // });
+
+        console.log([...map.values()]);// 注意这个] 中括号的位置。
+        console.log([...map.keys()]);
+
+        console.log("===============>>>>>>>>>>>>>>>");
+        
+        map = new Map();
+        document.querySelectorAll('div').forEach(item=>{
+            map.set(item,{
+                content: item.getAttribute("name")
+            });
+        });
+
+        console.log(map);
+        map.forEach((config,item)=>{
+            item.addEventListener("click",()=>{
+                alert(config.content);
+            })
+        })
+    
+
+
+
+    </script>
+</body>
+</html>

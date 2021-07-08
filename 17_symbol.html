@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = Symbol("abbd");
+        let b = Symbol();
+        let edu = Symbol();
+        console.log(b === edu)  //false;
+
+        console.log(a.description);// 提取Symbol的描述
+
+        // define method 2
+        let str_001 = Symbol.for("Hello");
+        let str_002 = Symbol.for("Hello");
+        console.log(str_001=== str_002);  //true;
+        console.log(Symbol.keyFor(str_001));  //提取Symbol的描述
+
+        //for in  for of 不能遍历到Symbol属性
+        
+        for(const key of Object.getOwnPropertySymbols(str_001)){        //只能遍历symbol属性
+            console.log(key);
+        }
+
+        // for(const key of Reflect.ownKeys(str_001)){         //所有属性都能遍历到
+        //     console.log(key);
+        // }
+
+
+
+    </script>
+    
+</body>
+</html>
