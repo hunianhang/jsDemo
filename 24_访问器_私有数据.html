@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        function User(name,age){
+            // this.name = name;
+            // this.age = age;
+            //以上的变量赋值方式存在问题，即外面的数据可以直接访问并修改name，age属性的值。
+            let data = {name, age};
+            //通过对其进行封装，采用闭包的形式，禁止外部对象访问，达到私有数据的目的。
+            Object.defineProperties(this,{
+                name:{
+                    get(){
+                        return data.name;
+                    },
+                    set(value){
+                        if(value.trim() ===""){
+                            throw new Error("Error");
+                        }
+                        data.name = value;
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

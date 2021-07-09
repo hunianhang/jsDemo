@@ -5,8 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        button{
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
+    <button message="后盾人"></button>houdunren</button>
+    <button message="google"></button>www.google.com</button>
     <script>
 
         //重点函数
@@ -17,6 +24,22 @@
         // }
 
         // console.table(lessons.filter(between(10,100)));
+
+        let btns = document.querySelectorAll("button");
+        btns.forEach(function(item){
+            let left = 1;
+            item.addEventListener("click",function(){
+                
+                console.log(left);
+                setInterval(function(){
+                    item.style.left = left++ + "px";
+                },100);
+            });
+        });
+
+
+        //闭包有内存泄露的问题，需要及时把父级变量及时的清除
+        //this指的是调用该方法的对象。
     </script>
 </body>
 </html>

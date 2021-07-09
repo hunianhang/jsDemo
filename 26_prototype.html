@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let hd = Object.create(null, {
+            name:{
+                value: "www.google.com"
+            }
+        });
+        //这个时候的hd是没有原型的。
+
+        //修改父级继承关系
+        Object.setPrototypeOf(hd,parent);// 即hd继承了parent
+        //获取一个对象的parent
+        console.log(Object.getPrototypeOf(hd) );
+    </script>
+</body>
+</html>

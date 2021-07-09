@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let Request = {
+            set token(content){
+                localStorage.setItem('token',content);
+            },
+
+            get token(){
+                let token = localStorage.getItem('token',content);
+                if(!token){
+                    alert("Please login")
+                }
+
+                return token;
+            }
+        }
+
+        Request.token = "feeeaefe1212dfae";
+        console.log(Request.token);
+
+
+        //Symbol 类型的数据永远是唯一的。
+        
+    </script>
+</body>
+</html>

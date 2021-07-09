@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //数组，对象的解构特性。注意
+        //删除对象属性的方法：
+        //delete user.age;
+        //增加属性，增加方法，访问属性变量
+        //user.age = 19;
+        //user getAge = function(){
+            //console.log(`${user.name} ${user.age}`);
+        //}
+        // for (const key in object) {
+            // user[key]的形式访问，而不能是user.key的形式访问。
+        // }
+
+
+        let user  ={
+            name: "google",
+            age: 18,
+        };
+        let {name:n, age:a} = user;//或者
+        let {name,age} = user;  //这种方式来写。因为name，age属性和名字和值是一样的。
+
+        name = 'google';
+        age = 19;
+
+        let opt = {name,age};
+        console.log(opt );
+
+        let options = {
+            w:100,
+            h:50,
+            color:"red"
+        }
+
+        let {w=200, h=100,color="red"} = options;
+        // let {w:200, h=100,color="red"} = options;  //注意不能用：来作为赋值符
+        console.log(w,h,color);
+
+
+        //检测对象属性：
+        //a.hasOwnProperty(url); 只看自己的属性
+        //console.log("concat" in arr);  这个in方法除了检测自己本身外，也检测父级里面的属性和方法。
+        //Object.setPrototypeOf(a,b); 为a对象设置一个新的父级对象b.也就是修改a的原型链。
+
+        let test = Object.assign({a:1},{b:2});  //作用是把两个对象进行合并。
+
+        for (const iterator of Object.keys(user)) { //Object.values(),Object.entries()
+            console.log(iterator);
+        }
+
+        //浅层次的拷贝
+        //可以采用循环遍历的方式进行复制
+        //采用Object.assign的方式进行复制：
+        let obj = Object.assign({},user);
+        console.log(obj );
+
+        obj = {...user};
+
+
+        //深拷贝：
+        function copy(obj){
+            let res = obj instanceof Array ? [] :{ };
+            for (const [k,v] of Object.entries(obj)){
+                res[k] = typeof v === 'object' ? copy(v):v;
+            }
+
+            return res;
+        }
+
+        console.log(JSON.stringify(Object.getOwnPropertyDescriptor(user,"name")) );//获取某一个属性的特征。若想获取整个对象的特征，则用getOwnPropertyDescriptors
+
+        Object.defineProperty(user,"name",{
+            value:"google",
+            writable:false,
+            enumerable:true,
+
+        });
+
+        Object.preventExtensions(user); //不允许添加数据到对象里。
+        Object.seal(user);   //封闭属性。不可以增删改查。
+        // Object.isSealed(user);
+        Object.freeze(user);//冻结属性
+        Object.isFrozen(user); //判断是否冻结属性
+
+        //对象属性的访问器
+        const abc = {
+            data: {name:"google",age:20},
+            set age(value){
+                if(typeof value !== "number" || value < 10 || value > 100){
+                    throw new Error("年龄格式错误");
+                }
+            },
+            get age(){
+                return this.data.age + "岁";
+            }
+            // getAge(){}
+        };
+
+        // abc.age = 999;
+
+
+        let lessons= {
+            lists:[
+                {name:"js",price:100},
+                {name:"mysql",price:212},
+                {name:"vue.js",price:98},
+            ],
+            get total(){
+                return this.lists.reduce((t,l)=>t+l.price,0);
+            }
+        };
+
+        console.log(lessons.total);
+
+        // lessons.total = 999; /// this will be error.
+
+        //批量设置属性和批量获取属性
+
+        let  user001 = {
+            name:"google",
+            url:"www.google.com",
+
+            get site(){
+                return `${this.name} + ${this.url}`;
+            },
+
+            set site(value){
+                [this.name, this.url] = value.split(',');
+            }
+        };
+
+        user001.site = "baidu,www.baidu.com";
+        console.log(user001.site);
+
+
+
+    </script>
+</body>
+</html>
